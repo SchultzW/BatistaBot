@@ -18,25 +18,42 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 import os
 import tweepy
 from secrets import *
 from time import gmtime, strftime
+import random
 
 
 # ====== Individual bot configuration ==========================
-bot_username = ''
+bot_username = 'MayITakeYourOrder'
 logfile_name = bot_username + ".log"
 
 # ==============================================================
 
-
+size=""
+prefix=""
+drinkType=""
+sugar=""
+extra=""
 def create_tweet():
     """Create the text of the tweet you want to send."""
     # Replace this with your code!
-    text = ""
+    text = "I want a {1}, {2},{3} with {4} {5}."(size,prefix,drinkType,sugar,extra)
     return text
-
+sizeList=['small','medium','large','tiny','uh ummmm medium, no a small','errr hmm a large, no a medium']
+prefixList=['double shot','triple shot','quad shot','almond milk','extra whipped cream','soy milk','coconut milk','goat milk', 'heavy cream','decaf','iced']
+drinkTypeList=['latte','macchiato','mocha','white mocha','pumpkin spice latte','caramel frappuccino','mocah frappuccino','chai latte','peppermint mocha','coffee' ]
+sugarList=["no sugar", 'two pumps of sugar', 'three pumps of sugar', 'four pumps of sugar', 'ten pumps of sugar', 'caramel syrup','some mocha','with honey'\
+           'with sugar free sugar','sugar free vanilla','some whisky','a dab of rum','angel tears']
+extraList=['while I leave and forget I ordered a drink',' and then I will look confused at what you make me','with a dirty look','and then I will take someone elses drink'\
+           'in my keep cup','in someone else keep cup','but tell me its a blueberry muffin',',but forget to make it','but ignore what I say','while I complain how slow you are'\
+           'while you look like you are having an existential crisis','but spill it all over yourself','but let me spill it all over myself','but let me spill it all over the floor'\
+           'while I give you a dirty look','while you give me a dirty look']
+def MakeSize():
+    size=random.randint(0,len(sizeList))
+    return size
 
 def tweet(text):
     """Send out the text as a tweet."""
