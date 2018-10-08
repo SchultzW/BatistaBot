@@ -26,6 +26,7 @@ from time import gmtime, strftime
 import random
 
 
+
 # ====== Individual bot configuration ==========================
 bot_username = 'MayITakeYourOrder'
 logfile_name = bot_username + ".log"
@@ -37,11 +38,7 @@ prefix=""
 drinkType=""
 sugar=""
 extra=""
-def create_tweet():
-    """Create the text of the tweet you want to send."""
-    # Replace this with your code!
-    text = "I want a {1}, {2},{3} with {4} {5}."(size,prefix,drinkType,sugar,extra)
-    return text
+
 sizeList=['small','medium','large','tiny','uh ummmm medium, no a small','errr hmm a large, no a medium']
 prefixList=['double shot','triple shot','quad shot','almond milk','extra whipped cream','soy milk','coconut milk','goat milk', 'heavy cream','decaf','iced']
 drinkTypeList=['latte','macchiato','mocha','white mocha','pumpkin spice latte','caramel frappuccino','mocah frappuccino','chai latte','peppermint mocha','coffee' ]
@@ -53,7 +50,42 @@ extraList=['while I leave and forget I ordered a drink',' and then I will look c
            'while I give you a dirty look','while you give me a dirty look']
 def MakeSize():
     size=random.randint(0,len(sizeList))
+    size=sizeList[size]
     return size
+
+def MakePrefix():
+    prefix=random.randint(0,len(prefixList))
+    prefix=prefixList[prefix]
+    return prefix
+
+def MakeDrinkType():
+    drinkType=random.randint(0,len(drinkTypeList))
+    drinkType=drinkTypeList[drinkType]
+    return drinkType
+
+
+def MakeExtra():
+    extra=random.randint(0,len(extraList))
+    extra=extraList[extra]
+    return extra
+
+def MakeSugar():
+    sugar=random.randint(0,len(sugarList))
+    sugar=sugarList[sugar]
+    return sugar
+
+def create_tweet():
+    """Create the text of the tweet you want to send."""
+    # Replace this with your code!
+    extra=MakeExtra()
+    sugar=MakeSugar()
+    drinkType=MakeDrinkType()
+    prefix=MakePrefix()
+    size=MakeSize()
+    text=""
+    myTweet = "I want a %s, %s,%s with %s %s." % (size,prefix,drinkType,sugar,extra)
+    text=myTweet
+    return text
 
 def tweet(text):
     """Send out the text as a tweet."""
@@ -61,7 +93,7 @@ def tweet(text):
     auth = tweepy.OAuthHandler(C_KEY, C_SECRET)
     auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
     api = tweepy.API(auth)
-
+    message="there was an error"
     # Send the tweet and log success or failure
     try:
         api.update_status(text)
