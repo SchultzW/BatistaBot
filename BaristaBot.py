@@ -50,28 +50,28 @@ extraList=['while I leave and forget I ordered a drink',' and then I will look c
            'while I give you a dirty look','while you give me a dirty look']
 def MakeSize():
     size=random.randint(0,len(sizeList))
-    size=sizeList[size]
+    
     return size
 
 def MakePrefix():
-    prefix=random.randint(0,len(prefixList))
-    prefix=prefixList[prefix]
+    prefix=random.choice(prefixList)
+    
     return prefix
 
 def MakeDrinkType():
-    drinkType=random.randint(0,len(drinkTypeList))
-    drinkType=drinkTypeList[drinkType]
+    drinkType=random.choice(drinkTypeList)
+    
     return drinkType
 
 
 def MakeExtra():
-    extra=random.randint(0,len(extraList))
-    extra=extraList[extra]
+    extra=random.choice(extraList)
+    
     return extra
 
 def MakeSugar():
-    sugar=random.randint(0,len(sugarList))
-    sugar=sugarList[sugar]
+    sugar=random.choice(sugarList)
+    
     return sugar
 
 def create_tweet():
